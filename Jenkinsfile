@@ -51,6 +51,14 @@ pipeline {
                 }
             }
         }
+        stage ('Functional Test'){
+            steps {
+                dir('functional-test'){
+                    git branch: 'main', credentialsId: 'GitHub', url: 'https://github.com/EliedersonLinhares/APITest-Selenium'
+                    bat 'mvn test'
+                }    
+            }
+        } 
     }  
 }
 
