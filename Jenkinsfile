@@ -42,6 +42,15 @@ pipeline {
                 }    
             }
         } 
+        stage ('Deploy Frontend'){
+            steps {
+                dir('frontend'){
+                    git branch: 'main', credentialsId: 'GitHub', url: 'https://github.com/EliedersonLinhares/tasks-frontend'
+                    bat 'mvn clean package'
+                    deploy adapters: [tomcat9(credentialsId: 'Tomcatlogin', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks', war: 'target/tasks.war'
+                }
+            }
+        }
     }  
 }
 
