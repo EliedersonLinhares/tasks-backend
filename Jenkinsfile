@@ -73,6 +73,9 @@ pipeline {
                 }    
             }
         } 
-    }  
+    } 
+    post {
+        junit allowEmptyResults: true, testResults: 'target/surfire-reports/*.xml, api-test/target/surfire-reports/*.xml, functional-test/target/surfire-reports/*.xml, functional-test/target/failsafe-reports/*.xml'
+    } 
 }
 
