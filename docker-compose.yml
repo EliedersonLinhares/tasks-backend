@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 services:
   db:
     container_name: pg-prod
@@ -30,7 +30,7 @@ services:
       - DATABASE_PORT=5432
       - DATABASE_USER=postgres
       - DATABASE_PASSWD=passwd
-      #- DATABASE_UPDATE=none
+      - DATABASE_UPDATE=none
     depends_on:
       - db
 
@@ -38,10 +38,10 @@ services:
     container_name: frontend-prod
     image: front_prod:build_${BUILD_NUMBER}
     build:
-        context: .
-        args:
-          - WAR_FILE=frontend/target/tasks.war
-          - CONTEXT=tasks
+      context: .
+      args:
+        - WAR_FILE=frontend/target/tasks.war
+        - CONTEXT=tasks
     networks:
       - prod_net_front
     ports:
